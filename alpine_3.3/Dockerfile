@@ -1,9 +1,9 @@
 
-FROM andrewrothstein/docker-ansible:ubuntu_wily
+FROM andrewrothstein/docker-ansible:alpine_3.3
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 
 RUN mkdir -p /role-to-test
 ONBUILD ADD . /role-to-test
 ONBUILD WORKDIR /role-to-test
-ONBUILD RUN ansible-galaxy install -r requirements.yml
+ONBUILD RUN if [ -f requirements.yml ]; then ansible-galaxy install -r requirements.yml; fi
 ONBUILD RUN ansible-playbook test.yml

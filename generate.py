@@ -14,7 +14,7 @@ MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 RUN mkdir -p /role-to-test
 ONBUILD ADD . /role-to-test
 ONBUILD WORKDIR /role-to-test
-ONBUILD RUN ansible-galaxy install -r requirements.yml
+ONBUILD RUN if [ -f requirements.yml ]; then ansible-galaxy install -r requirements.yml; fi
 ONBUILD RUN ansible-playbook test.yml
 """
 
@@ -89,12 +89,12 @@ if __name__ == '__main__' :
 
   configs = [
     { "tag" : "fedora_23" },
-    { "tag" : "fedora_22" },
     { "tag" : "centos_7" },
     { "tag" : "ubuntu_trusty" },
-    { "tag" : "ubuntu_vivid" },
-    { "tag" : "ubuntu_wily" },
-    { "tag" : "ubuntu_xenial" }
+    { "tag" : "ubuntu_xenial" },
+    { "tag" : "alpine_edge" },
+    { "tag" : "alpine_3.3" },
+    { "tag" : "alpine_3.4" }
   ]
 
   if (args.pull) :
