@@ -89,6 +89,7 @@ if __name__ == '__main__' :
 
   configs = [
     { "tag" : "fedora_23" },
+    { "tag" : "fedora_24" },
     { "tag" : "centos_7" },
     { "tag" : "ubuntu_trusty" },
     { "tag" : "ubuntu_xenial" },
