@@ -11,6 +11,13 @@ Dockerfile = """
 FROM andrewrothstein/docker-ansible:{{tag}}
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 
+RUN mkdir -p /freshen
+WORKDIR /freshen
+COPY requirements.yml requirements.yml
+COPY playbook.yml playbook.yml
+RUN ansible-galaxy install -r requirements.yml
+RUN ansible-playbook playbook.yml
+
 RUN mkdir -p /role-to-test
 ONBUILD ADD . /role-to-test
 ONBUILD WORKDIR /role-to-test
@@ -25,6 +32,8 @@ def write(params) :
   tag = params["tag"]
   if (not os.path.isdir(tag)) :
     os.mkdir(tag)
+  copy_file(tag, "requirements.yml")
+  copy_file(tag, "playbook.yml")
   fq_dockerfile = "{0}/Dockerfile".format(tag) 
   print "writing {0}...".format(fq_dockerfile)
   f = open(fq_dockerfile, 'w')
@@ -88,11 +97,11 @@ if __name__ == '__main__' :
   args = parser.parse_args()
 
   configs = [
+    { "tag" : "ubuntu_trusty" },
+    { "tag" : "ubuntu_xenial" },
     { "tag" : "fedora_23" },
     { "tag" : "fedora_24" },
     { "tag" : "centos_7" },
-    { "tag" : "ubuntu_trusty" },
-    { "tag" : "ubuntu_xenial" },
     { "tag" : "alpine_edge" },
     { "tag" : "alpine_3.3" },
     { "tag" : "alpine_3.4" }
