@@ -8,3 +8,6 @@ dependencies:
     - docker info
     - ./circleci-builder.sh:
         parallel: true
+  tests:
+    - ./circleci-tester.sh:
+        parallel: true
