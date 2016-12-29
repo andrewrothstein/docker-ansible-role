@@ -105,7 +105,8 @@ if __name__ == '__main__' :
     { "tag" : "centos_7" },
     { "tag" : "alpine_edge" },
     { "tag" : "alpine_3.3" },
-    { "tag" : "alpine_3.4" }
+    { "tag" : "alpine_3.4" },
+    { "tag" : "debian_jessie" },
   ]
 
   if (args.pull) :

@@ -4,12 +4,36 @@ machine:
     - docker
 
 dependencies:
-  override:
-    - docker info
-    - ./circleci-builder.sh:
-        parallel: true
+  pre:
+    - sudo -H pip install --upgrade pip
+    - sudo -H pip install circleci-helpers
 
 test:
   override:
-    - ./circleci-tester.sh:
+    - ? | 
+          circle-matrix <<"EHD"
+            env:
+              - OS=alpine_3.3
+              - OS=alpine_3.4
+              - OS=alpine_edge
+              - OS=centos_7
+              - OS=fedora_23
+              - OS=fedora_24
+              - OS=ubuntu_trusty
+              - OS=ubuntu_xenial
+
+            before_script:
+              - export TARGET_REGISTRY="https://docker.io"
+              - export TARGET_USER="andrewrothstein"
+              - export TARGET_APP="docker-ansible-role"
+              - export TARGET_CONTAINER=${TARGET_REGISTRY}/${TARGET_USER}/${TARGET_APP}_$OS
+              - env | sort
+
+            script:
+              - docker build -t $TARGET_CONTAINER $OS
+
+            after_script:
+              - docker images $TARGET_CONTAINER
+          EHD
+      :
         parallel: true

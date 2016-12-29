@@ -1,0 +1,3 @@
+---
+- src: andrewrothstein.pkg-upgrade
+  version: v1.0.0
