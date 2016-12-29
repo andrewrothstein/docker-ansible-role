@@ -13,4 +13,5 @@ RUN mkdir -p /role-to-test
 ONBUILD ADD . /role-to-test
 ONBUILD WORKDIR /role-to-test
 ONBUILD RUN if [ -f requirements.yml ]; then ansible-galaxy install -r requirements.yml; fi
+ONBUILD RUN if [ -f test-requirements.yml ]; then ansible-galaxy install -r test-requirements.yml; fi
 ONBUILD RUN ansible-playbook test.yml
