@@ -17,16 +17,16 @@ test:
               - OS=alpine_3.4
               - OS=alpine_edge
               - OS=centos_7
+              - OS=debian_jessie
               - OS=fedora_23
               - OS=fedora_24
               - OS=ubuntu_trusty
               - OS=ubuntu_xenial
 
             before_script:
-              - export TARGET_REGISTRY="https://docker.io"
               - export TARGET_USER="andrewrothstein"
               - export TARGET_APP="docker-ansible-role"
-              - export TARGET_CONTAINER=${TARGET_REGISTRY}/${TARGET_USER}/${TARGET_APP}_$OS
+              - export TARGET_CONTAINER=${TARGET_USER}/${TARGET_APP}_$OS
               - env | sort
 
             script:
