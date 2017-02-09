@@ -1,0 +1,5 @@
+---
+- hosts: all
+  roles:
+    - andrewrothstein.pkg-upgrade
+    - andrewrothstein.sudoers

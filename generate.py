@@ -104,9 +104,10 @@ if __name__ == '__main__' :
     { "tag" : "fedora_24" },
     { "tag" : "fedora_25" },
     { "tag" : "centos_7" },
-    { "tag" : "alpine_edge" },
     { "tag" : "alpine_3.3" },
     { "tag" : "alpine_3.4" },
+    { "tag" : "alpine_3.5" },
+    { "tag" : "alpine_edge" },
     { "tag" : "debian_jessie" },
   ]
 
