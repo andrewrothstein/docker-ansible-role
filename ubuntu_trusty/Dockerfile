@@ -1,5 +1,5 @@
 
-FROM andrewrothstein/docker-ansible:ubuntu_trusty
+FROM quay.io/andrewrothstein/docker-ansible:ubuntu_trusty
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 
 RUN mkdir -p /freshen

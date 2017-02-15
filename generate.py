@@ -8,7 +8,7 @@ import shutil
 from string import join
 
 Dockerfile = """
-FROM andrewrothstein/docker-ansible:{{tag}}
+FROM quay.io/andrewrothstein/docker-ansible:{{tag}}
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 
 RUN mkdir -p /freshen
