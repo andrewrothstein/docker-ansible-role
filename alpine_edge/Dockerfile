@@ -1,4 +1,3 @@
-
 FROM quay.io/andrewrothstein/docker-ansible:alpine_edge
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 

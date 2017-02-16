@@ -1,4 +1,3 @@
-
 FROM quay.io/andrewrothstein/docker-ansible:fedora_24
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 

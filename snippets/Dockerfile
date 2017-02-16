@@ -1,4 +1,4 @@
-FROM quay.io/andrewrothstein/docker-ansible:fedora_25
+FROM {{fq_upstream_image}}
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 
 RUN mkdir -p /freshen

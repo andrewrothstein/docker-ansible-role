@@ -1,4 +1,3 @@
-
 FROM quay.io/andrewrothstein/docker-ansible:alpine_3.3
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 

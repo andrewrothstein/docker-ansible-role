@@ -2,17 +2,19 @@
 ---
 # Assumed vars and example from CircleCI
 # CIRCLE_PROJECT_REPONAME: docker-ansible-role
+# CIRCLE_PROJECT_USERNAME: andrewrothstein
 
 # Registry credentials:
-# DOCKER_USER: andrewrothstein
+# DOCKER_USER: andrewrothstein+robot-234
 # DOCKER_PASSWORD: d88be5ba-f405-11e6-8852-234995e46dba
 # DOCKER_EMAIL: andrew.rothstein@gmail.com
 # DOCKER_REGISTRY: quay.io
 
-# Container building the ONBUILD way...
-# DOCKER_UPSTREAM: docker-ansible
-# needs read access to ${DOCKER_REGISTRY}/${DOCKER_USER}/${DOCKER_UPSTREAM}:${OS}
-# builds tagged containers named ${DOCKER_REGISTRY}/${DOCKER_USER}/${CIRCLE_PROJECT_REPONAME}:${OS}
+# Container building...
+# DOCKER_UPSTREAM_USERNAME: andrewrothstein
+# DOCKER_UPSTREAM_REPONAME: docker-ansible
+# needs read access to ${DOCKER_REGISTRY}/${DOCKER_UPSTREAM_USERNAME}/${DOCKER_UPSTREAM_REPONAME}:${OS}
+# builds tagged containers named ${DOCKER_REGISTRY}/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${OS}
 
 machine:
   services:
@@ -22,7 +24,6 @@ dependencies:
   pre:
     - sudo -H pip install --upgrade pip
     - sudo -H pip install circleci-helpers
-    - docker login -u $DOCKER_USER -p $DOCKER_PASSWORD -e $DOCKER_EMAIL $DOCKER_REGISTRY 
 
 test:
   override:
@@ -41,17 +42,25 @@ test:
               - OS=ubuntu_trusty
               - OS=ubuntu_xenial
 
-            before_script:
-              - export TARGET_CONTAINER=${DOCKER_USER}/${CIRCLE_PROJECT_REPONAME}:$OS
-              - export DOCKER_BUILD_DIR=$OS
-
             script:
-              - docker build --rm=false -t $TARGET_CONTAINER $DOCKER_BUILD_DIR
+              - >-
+                ./dcb.py
+                --upstreamregistry ${DOCKER_REGISTRY}
+                --upstreamemail ${DOCKER_EMAIL}
+                --upstreamgroup andrewrothstein
+                --upstreamapp docker-ansible
+                --pull ${OS}
+                --build ${OS}
+              - >-
+                ./dcb.py
+                --targetregistry ${DOCKER_REGISTRY}
+                --targetuser ${DOCKER_USER}
+                --targetpwd ${DOCKER_PASSWORD}
+                --targetemail ${DOCKER_EMAIL}
+                --targetgroup ${CIRCLE_PROJECT_USERNAME}
+                --targetapp ${CIRCLE_PROJECT_REPONAME}
+                --push ${OS}
 
-            after_script:
-              - docker images $TARGET_CONTAINER
-              - docker tag $TARGET_CONTAINER $DOCKER_REGISTRY/$TARGET_CONTAINER
-              - docker push $DOCKER_REGISTRY/$TARGET_CONTAINER
           EHD
       :
         parallel: true
