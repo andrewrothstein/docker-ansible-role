@@ -1,21 +1,4 @@
 ---
----
-# Assumed vars and example from CircleCI
-# CIRCLE_PROJECT_REPONAME: docker-ansible-role
-# CIRCLE_PROJECT_USERNAME: andrewrothstein
-
-# Registry credentials:
-# DOCKER_USER: andrewrothstein+robot-234
-# DOCKER_PASSWORD: d88be5ba-f405-11e6-8852-234995e46dba
-# DOCKER_EMAIL: andrew.rothstein@gmail.com
-# DOCKER_REGISTRY: quay.io
-
-# Container building...
-# DOCKER_UPSTREAM_USERNAME: andrewrothstein
-# DOCKER_UPSTREAM_REPONAME: docker-ansible
-# needs read access to ${DOCKER_REGISTRY}/${DOCKER_UPSTREAM_USERNAME}/${DOCKER_UPSTREAM_REPONAME}:${OS}
-# builds tagged containers named ${DOCKER_REGISTRY}/${CIRCLE_PROJECT_USERNAME}/${CIRCLE_PROJECT_REPONAME}:${OS}
-
 machine:
   services:
     - docker
@@ -23,7 +6,7 @@ machine:
 dependencies:
   pre:
     - sudo -H pip install --upgrade pip
-    - sudo -H pip install circleci-helpers
+    - sudo -H pip install circleci-helpers dcb==0.0.1
 
 test:
   override:
@@ -44,21 +27,14 @@ test:
 
             script:
               - >-
-                ./dcb.py
-                --upstreamregistry ${DOCKER_REGISTRY}
-                --upstreamemail ${DOCKER_EMAIL}
+                dcb
                 --upstreamgroup andrewrothstein
                 --upstreamapp docker-ansible
+                --snippetsdir .
+                --snippet snippet.j2
+                --write ${OS}
                 --pull ${OS}
                 --build ${OS}
-              - >-
-                ./dcb.py
-                --targetregistry ${DOCKER_REGISTRY}
-                --targetuser ${DOCKER_USER}
-                --targetpwd ${DOCKER_PASSWORD}
-                --targetemail ${DOCKER_EMAIL}
-                --targetgroup ${CIRCLE_PROJECT_USERNAME}
-                --targetapp ${CIRCLE_PROJECT_REPONAME}
                 --push ${OS}
 
           EHD
