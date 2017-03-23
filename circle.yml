@@ -25,17 +25,14 @@ test:
               - OS=ubuntu_trusty
               - OS=ubuntu_xenial
 
+            before_script:
+              - export DCB_UPSTREAM_GROUP=andrewrothstein
+              - export DCB_UPSTREAM_APP=docker-ansible
+              
             script:
-              - >-
-                dcb
-                --upstreamgroup andrewrothstein
-                --upstreamapp docker-ansible
-                --snippetsdir .
-                --snippet snippet.j2
-                --write ${OS}
-                --pull ${OS}
-                --build ${OS}
-                --push ${OS}
+              - dcb --snippetsdir . --snippet snippet.j2 --write ${OS}
+              - dcb --build ${OS}
+              - dcb --push ${OS}
 
           EHD
       :
