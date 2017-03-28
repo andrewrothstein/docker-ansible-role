@@ -6,4 +6,5 @@ dcb \
     --snippetsdir . \
     --snippet snippet.j2 \
     --writeall \
-    --writesubdirs
+    --writesubdirs \
+    --copyfile requirements.yml playbook.yml
