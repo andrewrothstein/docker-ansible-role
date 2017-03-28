@@ -1,4 +1,4 @@
-FROM quay.io/andrewrothstein/docker-ansible:alpine_3.4
+FROM docker.io/andrewrothstein/docker-ansible:alpine_3.4
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 
 RUN mkdir -p /freshen

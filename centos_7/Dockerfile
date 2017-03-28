@@ -1,4 +1,4 @@
-FROM quay.io/andrewrothstein/docker-ansible:centos_7
+FROM docker.io/andrewrothstein/docker-ansible:centos_7
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 
 RUN mkdir -p /freshen

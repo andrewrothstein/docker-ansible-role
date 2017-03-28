@@ -1,4 +1,4 @@
-FROM quay.io/andrewrothstein/docker-ansible:debian_jessie
+FROM docker.io/andrewrothstein/docker-ansible:debian_jessie
 MAINTAINER "Andrew Rothstein" andrew.rothstein@gmail.com
 
 RUN mkdir -p /freshen
