@@ -6,7 +6,7 @@ machine:
 dependencies:
   pre:
     - sudo -H pip install --upgrade pip
-    - sudo -H pip install circleci-helpers dcb==0.0.4
+    - sudo -H pip install circleci-helpers dcb==0.0.5
 
 test:
   override:
@@ -25,14 +25,16 @@ test:
               - OS=ubuntu_trusty
               - OS=ubuntu_xenial
 
-            before_script:
-              - export DCB_UPSTREAM_GROUP=andrewrothstein
-              - export DCB_UPSTREAM_APP=docker-ansible
-              
             script:
-              - dcb --snippetsdir . --snippet snippet.j2 --write ${OS}
-              - dcb --build ${OS}
-              - dcb --push ${OS}
+              - >-
+                dcb
+                --snippetsdir .
+                --snippet snippet.j2
+                --upstreamgroup andrewrothstein
+                --upstreamapp docker-ansible
+                --write ${OS}
+                --build ${OS}
+                --push ${OS}
 
           EHD
       :
