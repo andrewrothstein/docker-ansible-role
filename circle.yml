@@ -6,7 +6,7 @@ machine:
 dependencies:
   pre:
     - sudo -H pip install --upgrade pip
-    - sudo -H pip install circleci-helpers dcb==0.0.11
+    - sudo -H pip install circleci-helpers dcb==0.0.13
 
 test:
   override:
@@ -29,7 +29,7 @@ test:
               - >-
                 dcb
                 --snippetsdir .
-                --snippet from.j2 ansible-playbook.j2 snippet.j2
+                --snippet from.j2 onbuild-ansible-test.j2
                 --upstreamgroup andrewrothstein
                 --upstreamapp docker-ansible
                 --write ${OS}
