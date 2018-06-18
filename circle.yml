@@ -20,6 +20,7 @@ test:
               - OS=alpine_3.7
               - OS=alpine_edge
               - OS=archlinux_latest
+              - OS=centos_6
               - OS=centos_7
               - OS=debian_jessie
               - OS=debian_stretch
@@ -30,6 +31,7 @@ test:
               - OS=fedora_27
               - OS=ubuntu_trusty
               - OS=ubuntu_xenial
+              - OS=ubuntu_bionic
 
             script:
               - >-
