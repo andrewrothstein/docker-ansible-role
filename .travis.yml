@@ -36,7 +36,7 @@ env:
   - OS=ubuntu_bionic
     
 before_install:
-  - pip install ansible-galaxy-local-deps dcb==0.0.15
+  - pip install ansible-galaxy-local-deps dcb==0.0.14
   - ansible-galaxy-local-deps-write
 
 script:
