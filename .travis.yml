@@ -38,14 +38,14 @@ env:
   - OS=ubuntu_bionic
     
 script:
-  - ansible-galaxy-local-deps-write
   - >-
     dcb
     --snippetsdir .
     --snippet from.j2 ansible-playbook.j2 onbuild-ansible-test.j2
     --upstreamgroup andrewrothstein
     --upstreamapp docker-ansible
-    --pull ${OS}
-    --write ${OS}
-    --build ${OS}
-    --push ${OS}
+    --alltags ${OS}
+    --pullall
+    --writeall
+    --buildall
+    --pushall
