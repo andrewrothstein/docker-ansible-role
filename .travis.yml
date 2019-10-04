@@ -38,6 +38,7 @@ env:
   - OS=ubuntu_trusty
   - OS=ubuntu_xenial
   - OS=ubuntu_bionic
+  - OS=ubi8_8.0
     
 script:
   - >-
