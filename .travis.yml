@@ -35,10 +35,10 @@ env:
   - OS=fedora_28
   - OS=fedora_29
   - OS=fedora_30
+  - OS=ubi8_8.0
   - OS=ubuntu_trusty
   - OS=ubuntu_xenial
   - OS=ubuntu_bionic
-  - OS=ubi8_8.0
     
 script:
   - >-
@@ -47,8 +47,8 @@ script:
     --snippet from.j2 ansible-playbook.j2 onbuild-ansible-test.j2
     --upstreamgroup andrewrothstein
     --upstreamapp docker-ansible
-    --alltags ${OS}
     --pullall
     --writeall
     --buildall
     --pushall
+    --alltags ${OS}
