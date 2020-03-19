@@ -40,6 +40,7 @@ env:
   - OS=fedora_31
   - OS=fedora_32
   - OS=ubi8_8.0
+  - OS=ubi8_8.1
   - OS=ubuntu_xenial
   - OS=ubuntu_bionic
     
