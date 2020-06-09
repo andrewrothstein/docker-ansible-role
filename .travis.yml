@@ -15,6 +15,7 @@ branches:
 env:
   - OS=alpine_3.10
   - OS=alpine_3.11
+  - OS=alpine_3.12
   - OS=alpine_edge
   - OS=archlinux_latest
   - OS=centos_7
@@ -25,6 +26,7 @@ env:
   - OS=fedora_32
   - OS=ubi8_8.0
   - OS=ubi8_8.1
+  - OS=ubi8_8.2
   - OS=ubuntu_xenial
   - OS=ubuntu_bionic
     
