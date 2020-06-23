@@ -27,8 +27,9 @@ env:
   - OS=ubi8_8.0
   - OS=ubi8_8.1
   - OS=ubi8_8.2
-  - OS=ubuntu_xenial
   - OS=ubuntu_bionic
+  - OS=ubuntu_focal
+  - OS=ubuntu_xenial
     
 script:
   - >-
