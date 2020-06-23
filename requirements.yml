@@ -2,4 +2,4 @@
 - src: andrewrothstein.pkg-upgrade
   version: v1.0.9
 - src: andrewrothstein.sudoers
-  version: v1.0.12
+  version: v1.0.13
