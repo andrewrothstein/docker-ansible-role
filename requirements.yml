@@ -1,5 +1,7 @@
 ---
-- src: andrewrothstein.pkg-upgrade
+- role: andrewrothstein.pkg-upgrade
   version: v1.0.9
-- src: andrewrothstein.sudoers
+- role: andrewrothstein.sudoers
   version: v1.0.13
+- role: andrewrothstein.iproute
+  version: v1.0.0
