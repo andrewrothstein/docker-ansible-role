@@ -6,7 +6,7 @@ services:
   - docker
 
 language: python
-python: 3.7
+python: 3.8
 
 branches:
   except:
@@ -20,8 +20,9 @@ env:
   - OS=archlinux_latest
   - OS=centos_7
   - OS=centos_8
-  - OS=debian_stretch
+  - OS=debian_bullseye
   - OS=debian_buster
+  - OS=debian_stretch
   - OS=fedora_31
   - OS=fedora_32
   - OS=gentoo_latest
